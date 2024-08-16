@@ -1,6 +1,9 @@
 import React from 'react'
+import { Navigate, useNavigate } from 'react-router-dom'
+import Signup from './Signup'
 
 function NavbarPill() {
+  const navigate=useNavigate()
   return (
       <div>
           {<ul
@@ -45,7 +48,8 @@ function NavbarPill() {
       data-bs-toggle="tab"
       type="button"
       role="tab"
-      aria-selected="false"
+            aria-selected="false"
+            onClick={()=>{Navigate(`/${Signup}`)}}
     >
       Signup
     </button>
