@@ -31,8 +31,8 @@ function Navbar() {
                                 alt={movie.title}
                                 style={{ 
                                     height: '450px', 
-                                    objectFit: 'contain', // Ensures the whole image fits without distortion
-                                    objectPosition: 'center' // Centers the image within the container
+                                    objectFit: 'contain', 
+                                    objectPosition: 'center' 
                                 }}
                             />
                             <div className="carousel-caption d-none d-md-block">

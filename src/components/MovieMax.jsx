@@ -2,20 +2,22 @@ import React, { useEffect } from 'react';
 
 function MovieMax({ onMoviesFetched }) {
     useEffect(() => {
-        const getMovie = async () => {
-            try {
-                const response = await fetch('https://api.themoviedb.org/3/discover/movie?api_key=e900f92d148bf8ae9a214d27b5fac540');
-                const data = await response.json();
-                onMoviesFetched(data.results); // Pass all movies to parent
-            } catch (error) {
-                console.error('Error fetching movie data:', error);
-            }
-        };
+      const getMovie = async () => {
+        try {
+          const response = await fetch(
+            "https://api.themoviedb.org/3/discover/movie?api_key=e900f92d148bf8ae9a214d27b5fac540"
+          );
+          const data = await response.json();
+          onMoviesFetched(data.results);
+        } catch (error) {
+          console.error("Error fetching movie data:", error);
+        }
+      };
 
-        getMovie();
+      getMovie();
     }, [onMoviesFetched]);
 
-    return null; // This component does not render anything itself
+    return null; 
 }
 
 export default MovieMax;

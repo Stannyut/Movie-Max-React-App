@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter> {/* Wrap your app with BrowserRouter */}
+    <BrowserRouter> 
       <App />
     </BrowserRouter>
   </StrictMode>,

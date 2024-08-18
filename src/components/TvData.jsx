@@ -6,7 +6,7 @@ function TvData({ onMoviesFetched }) {
             try {
                 const response = await fetch('https://api.themoviedb.org/3/discover/tv?api_key=e900f92d148bf8ae9a214d27b5fac540');
                 const data = await response.json();
-                onMoviesFetched(data.results); // Pass all TV shows to parent
+                onMoviesFetched(data.results); 
             } catch (error) {
                 console.error('Error fetching TV show data:', error);
             }
