@@ -1,9 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Signup from "./Signup";
+import { useAuth } from "../AuthContext/AuthContext";
+import Logout from "./Logout";
 
 function NavbarPill() {
   const navigate = useNavigate();
+  const { userLoggedIn } = useAuth();
 
   return (
     <div>
@@ -43,19 +45,54 @@ function NavbarPill() {
           </button>
         </li>
         <li className="nav-item" role="presentation">
-          <button
-            onClick={() => {
-              navigate("/signup"); // Corrected navigation
-            }}
-            className="nav-link rounded-5 fw-bold"
-            id="contact-tab2"
-            data-bs-toggle="tab"
-            type="button"
-            role="tab"
-            aria-selected="false"
-          >
-            Signup
-          </button>
+          {/* Conditional Rendering: Show Login and Logout buttons if user is logged in; show Signup and Login otherwise */}
+          {userLoggedIn ? (
+            <>
+              <button
+                onClick={() => {
+                  navigate("/login");
+                }}
+                className="nav-link rounded-5 fw-bold"
+                id="login-tab2"
+                data-bs-toggle="tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+              >
+                Login
+              </button>
+              <Logout />
+            </>
+          ) : (
+            <>
+              <button
+                onClick={() => {
+                  navigate("/signup");
+                }}
+                className="nav-link rounded-5 fw-bold"
+                id="signup-tab2"
+                data-bs-toggle="tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+              >
+                Signup
+              </button>
+              <button
+                onClick={() => {
+                  navigate("/login");
+                }}
+                className="nav-link rounded-5 fw-bold"
+                id="login-tab2"
+                data-bs-toggle="tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+              >
+                Login
+              </button>
+            </>
+          )}
         </li>
       </ul>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import MovieMax from "./MovieMax"; // Import the MovieMax component
+import MovieMax from "./MovieMax";
 import { useNavigate } from "react-router-dom";
 
 function Discover() {
@@ -33,7 +33,7 @@ function Discover() {
     marginLeft: "20px",
     marginBottom: "20px",
     objectFit: "cover",
-    cursor: "pointer", // Add cursor pointer to indicate it's clickable
+    cursor: "pointer",
   };
 
   const handleClick = (movieId) => {
@@ -41,8 +41,6 @@ function Discover() {
   };
 
   useEffect(() => {
-    // Assuming MovieMax fetches and sets the movies
-    // Replace with an actual fetch or API call if needed
     const fetchMovies = async () => {
       try {
         const response = await fetch(
