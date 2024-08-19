@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "./Navbar";
-import Discover from "./Discover";
-import Tv from "./Tv";
+import Navbar from "./components/Navbar";
+import Discover from "./components/Discover";
+import Tv from "./components/Tv";
 
 function Home() {
   const containerStyle = {

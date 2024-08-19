@@ -25,7 +25,7 @@ const Signup = () => {
 
   return (
     <>
-      {userLoggedIn && <Navigate to={"/home"} replace={true} />}
+      {userLoggedIn && <Navigate to={"/"} replace={true} />}
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Sign Up</h2>

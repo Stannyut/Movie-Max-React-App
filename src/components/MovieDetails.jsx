@@ -1,49 +1,50 @@
-import React from "react";
-import MovieMax from "./MovieMax";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-function MovieDetails({ movies = [] }) {
-  // Default value as empty array
-  const container = {
-    display: "flex",
-    backgroundColor: "#333",
-    padding: "20px",
-    borderRadius: "10px",
+function MovieDetails() {
+  const { movieId } = useParams(); // Get the movie ID from the URL
+  const [movie, setMovie] = useState(null);
+
+  const getMovieDetails = async () => {
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${movieId}?api_key=e900f92d148bf8ae9a214d27b5fac540`
+      );
+      const data = await response.json();
+      setMovie(data);
+    } catch (error) {
+      console.error("Error fetching movie details:", error);
+    }
   };
 
-  const imageStyle = {
-    borderRadius: "10px",
-    marginRight: "20px",
-  };
+  useEffect(() => {
+    getMovieDetails();
+  }, [movieId]);
 
-  if (!Array.isArray(movies) || movies.length === 0) {
-    return <div style={{ color: "white" }}>No movies available</div>;
-  }
+  if (!movie) return <div>Loading...</div>;
 
   return (
-    <div style={container}>
-      {movies.map((movie) => (
-        <div key={movie.id}>
-          <img
-            style={imageStyle}
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-            alt={movie.title}
-          />
-        </div>
-      ))}
-      {movies[0] && (
+    <div style={{ display: "flex", background: "black" }}>
+      <div>
+        <img
+          key={movie.id}
+          style={{
+            width: "280px",
+            height: "360px",
+            marginLeft: "15px",
+            marginTop: "30px",
+          }}
+          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          alt={movie.title}
+        />
+        <h1>{movie.title}</h1>
+        <p>{movie.overview}</p>
         <div>
-          <h3 style={{ color: "white" }}>{movies[0].title}</h3>
-          <p
-            style={{
-              color: "white",
-              fontSize: "14px",
-              fontFamily: "Arial, sans-serif",
-            }}
-          >
-            {movies[0].overview}
-          </p>
+          <p>Release date: {movie.release_date} </p>
+          <p>Original language: {movie.original_language} </p>
+          <p>Popularity: {movie.popularity} </p>
         </div>
-      )}
+      </div>
     </div>
   );
 }

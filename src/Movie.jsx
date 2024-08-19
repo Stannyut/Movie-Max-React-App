@@ -14,20 +14,25 @@ function Movie() {
     useEffect(()=>{
      getMovie()
     },[])
-    console.log(movieList)
+    console.log(movieList[0]);
     
   return (
-      <div>
-          {movieList.map((movie) => (
-                <img 
-                    style={{width:"150px", height:"250px", marginLeft:"15px", marginTop:"30px" }}
-                    key={movie.id} 
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
-                    alt={movie.title} 
-                />
-            ))}
+    <div>
+      {movieList.map((movie, index) => (
+        <img
+          style={{
+            width: "150px",
+            height: "250px",
+            marginLeft: "15px",
+            marginTop: "30px",
+          }}
+          key={movie.id}
+          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          alt={movie.title}
+        />
+      ))}
     </div>
-  )
+  );
 }
 
 export default Movie
